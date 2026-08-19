@@ -24,6 +24,7 @@
     device-orientation-permission-ui="enabled: false">
 <a-assets>
   <img id="lightbulbImage" src="./lightbulb.png">
+  <img id="noBulbBackground" src="./culture-no-bulb.png">
 </a-assets>
     <a-camera
   position="0 0 0"
@@ -38,6 +39,14 @@
 
     <a-entity mindar-image-target="targetIndex: 0">
 <a-image
+  id="replacementBackground"
+  src="#noBulbBackground"
+  position="0 0 0.02"
+  width="1"
+  height="0.5625"
+  visible="false">
+</a-image>
+      <a-image
   src="#lightbulbImage"
   position="0.34 0.10 0.08"
   width="0.36"
@@ -66,6 +75,8 @@
 <script>
   const hotspot = document.querySelector('#lightbulbHotspot');
   const text = document.querySelector('#lightbulbText');
+  const background = document.querySelector('#replacementBackground');
+  const bulb = document.querySelector('a-image[src="#lightbulbImage"]');
 
   window.addEventListener('touchend', (event) => {
     const touch = event.changedTouches[0];
@@ -86,7 +97,25 @@
     );
 
     if (distance < 100) {
+      background.setAttribute('visible', true);
       text.setAttribute('visible', true);
+
+      bulb.setAttribute('animation__float', {
+        property: 'position',
+        to: '0.34 0.10 0.30',
+        dur: 700,
+        easing: 'easeOutQuad'
+      });
+
+      bulb.setAttribute('animation__pulse', {
+        property: 'scale',
+        from: '1 1 1',
+        to: '1.18 1.18 1.18',
+        dir: 'alternate',
+        loop: true,
+        dur: 900,
+        easing: 'easeInOutSine'
+      });
     }
   });
 </script>
