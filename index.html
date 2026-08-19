@@ -22,7 +22,9 @@
     renderer="colorManagement: true, physicallyCorrectLights"
     vr-mode-ui="enabled: false"
     device-orientation-permission-ui="enabled: false">
-
+<a-assets>
+  <img id="lightbulbImage" src="./lightbulb.png">
+</a-assets>
     <a-camera
   position="0 0 0"
   look-controls="enabled: false">
@@ -35,7 +37,12 @@
 </a-camera>
 
     <a-entity mindar-image-target="targetIndex: 0">
-
+<a-image
+  src="#lightbulbImage"
+  position="0.34 0.10 0.08"
+  width="0.36"
+  height="0.36">
+</a-image>
       <a-entity id="lightbulbHotspot"
           geometry="primitive: plane; width: 0.34; height: 0.50"
           material="opacity: 0; transparent: true"
