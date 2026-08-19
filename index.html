@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Culture Experience Demo</title>
+
+  <style>
+    body {
+      margin: 0;
+      background: #111;
+      color: white;
+      font-family: Arial, sans-serif;
+      text-align: center;
+    }
+
+    h1 {
+      padding: 20px;
+    }
+
+    video {
+      width: 100%;
+      max-width: 800px;
+    }
+
+    button {
+      font-size: 20px;
+      padding: 15px 30px;
+      margin: 20px;
+      cursor: pointer;
+    }
+  </style>
+</head>
+
+<body>
+
+  <h1>Culture Experience</h1>
+
+  <button id="startButton">Start Experience</button>
+
+  <br>
+
+  <video id="camera" autoplay playsinline></video>
+
+  <script>
+    const button = document.getElementById("startButton");
+    const video = document.getElementById("camera");
+
+    button.addEventListener("click", async () => {
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia({
+          video: {
+            facingMode: "environment"
+          },
+          audio: false
+        });
+
+        video.srcObject = stream;
+        button.style.display = "none";
+
+      } catch (error) {
+        alert("Camera access could not be started: " + error);
+      }
+    });
+  </script>
+
+</body>
+</html>
