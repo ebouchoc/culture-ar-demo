@@ -60,8 +60,27 @@
   const hotspot = document.querySelector('#lightbulbHotspot');
   const text = document.querySelector('#lightbulbText');
 
-  hotspot.addEventListener('click', () => {
-    text.setAttribute('visible', true);
+  window.addEventListener('touchend', (event) => {
+    const touch = event.changedTouches[0];
+
+    const camera = document.querySelector('a-camera').getObject3D('camera');
+    const hotspotObject = hotspot.object3D;
+
+    const position = new THREE.Vector3();
+    hotspotObject.getWorldPosition(position);
+    position.project(camera);
+
+    const screenX = (position.x + 1) / 2 * window.innerWidth;
+    const screenY = (-position.y + 1) / 2 * window.innerHeight;
+
+    const distance = Math.hypot(
+      touch.clientX - screenX,
+      touch.clientY - screenY
+    );
+
+    if (distance < 100) {
+      text.setAttribute('visible', true);
+    }
   });
 </script>
 </body>
