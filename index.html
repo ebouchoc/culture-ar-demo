@@ -123,7 +123,11 @@
     }
   });
 </script>
- 
+
+ <div id="rotateMessage">
+  Rotate your phone to continue
+</div> 
+  
 <div id="fullExperience">
   <img src="./culture-target.png" id="fullBackground">
 </div>
@@ -145,6 +149,30 @@
     height: 100%;
     object-fit: contain;
   }
+  #rotateMessage {
+  display: none;
+  position: fixed;
+  inset: 0;
+  z-index: 10000;
+  background: black;
+  color: white;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-family: Arial, sans-serif;
+  font-size: 28px;
+  padding: 30px;
+}
+
+@media (orientation: portrait) {
+  #fullExperience {
+    display: none !important;
+  }
+
+  #rotateMessage {
+    display: flex;
+  }
+}
 </style>
 <script>
   const target = document.querySelector('[mindar-image-target]');
