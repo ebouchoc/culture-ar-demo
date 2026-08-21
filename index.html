@@ -146,6 +146,13 @@
     object-fit: contain;
   }
 </style>
+<script>
+  const target = document.querySelector('[mindar-image-target]');
+  const fullExperience = document.querySelector('#fullExperience');
 
+  target.addEventListener('targetFound', () => {
+    fullExperience.style.display = 'block';
+  });
+</script>
 </body>
 </html>
