@@ -139,7 +139,12 @@
     inset: 0;
     width: 100vw;
     height: 100vh;
-    background: black;
+    background: linear-gradient(
+  90deg,
+  #16084f 0%,
+  #24105c 50%,
+  #d8321c 100%
+);
     z-index: 9999;
     overflow: hidden;
   }
@@ -147,7 +152,7 @@
   #fullBackground {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
   }
   #rotateMessage {
   display: none;
